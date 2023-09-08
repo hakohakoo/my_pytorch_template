@@ -10,9 +10,8 @@ if __name__ == "__main__":
     from utils.receiver_line_utils import *
     from utils.mesh_model_builder import get_indices_ellipsoid
 
-# 本文件使用到了SimPEG磁正演，建议不看或者最后看
-
 # 本文件生成的测试数据集分布在目标探测范围的最边缘。
+# 本文件使用到了SimPEG磁正演，建议不看或者最后看
 
 # File params
 dataSize = 500  # 生出数据条数

@@ -13,7 +13,7 @@ if __name__ == "__main__":
     args = global_args.PositionNet01Args
 
     # 数据集读取
-    data, labels = args.get_data_and_labels()
+    data, labels = args.get_data_and_labels(for_test=False)
 
     # 训练集和验证集的划分
     dataset = TensorDataset(data, labels)
@@ -51,7 +51,7 @@ if __name__ == "__main__":
         train_epochs_loss.append(np.average(train_epoch_loss))
 
         # valid step 用于监控对比train loss和valid loss，确保两个loss同时下降，以防止梯度爆炸或者过拟合的情况
-        # 两个loss的分析可参考：https://blog.csdn.net/qq_44866009/article/details/122274263
+        # 两种loss的分析可参考：https://blog.csdn.net/qq_44866009/article/details/122274263
         # ========================== valid step ==========================
         args.model.eval()
         valid_epoch_loss = []

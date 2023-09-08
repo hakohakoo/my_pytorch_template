@@ -10,13 +10,12 @@ if __name__ == "__main__":
     from utils.receiver_line_utils import *
     from utils.mesh_model_builder import get_indices_ellipsoid
 
-# 本文件使用到了SimPEG磁正演，建议不看或者最后看
-
 # 场景设定：定位距离坐标中心点2500m范围内的水下磁性目标物
 # 在距离海面100m的高度，飞机沿以坐标中心为中心、半径300m的圆周上采集数据，采样点间距1m，共采集1024个点。
 # 生成格式：
 # data: 1024个磁异常数值
 # label: 7个数值，对应潜艇的x，y，z坐标，磁化率，长宽高。
+# 本文件使用到了SimPEG磁正演，建议不看或者最后看
 
 # File params
 dataSize = 6500  # 生出数据条数
