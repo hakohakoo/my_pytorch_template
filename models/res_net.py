@@ -60,3 +60,19 @@ class ResNet(nn.Module):
     def forward(self, x):
         x = self.net(x)
         return x
+
+
+class MiniResNet(nn.Module):
+    # 允许用户根据数据传入的通道数和输出的特征数动态改变ResNet结构，提高代码的可复用性
+    def __init__(self, input_channels, out_features):
+        super().__init__()
+        b1 = nn.Sequential(nn.Conv2d(input_channels, 32, kernel_size=7, stride=2, padding=3),
+                           nn.BatchNorm2d(32), nn.ReLU(),
+                           nn.MaxPool2d(kernel_size=3, stride=2, padding=1))
+        b2 = nn.Sequential(*resnet_block(32, 32, 2, first_block=True))
+        b3 = nn.Sequential(*resnet_block(32, 128, 2))
+        self.net = nn.Sequential(b1, b2, b3, nn.AdaptiveAvgPool2d((1, 1)), nn.Flatten(), nn.Linear(128, out_features))
+
+    def forward(self, x):
+        x = self.net(x)
+        return x
